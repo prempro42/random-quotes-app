@@ -15,6 +15,7 @@ class RunAfterCompile {
   apply(compiler) {
     compiler.hooks.done.tap("Copy files", function () {
       fse.copySync("./app/main.css", "./dist/main.css")
+      fse.copySync("./app/images/refresh-2-512.png", "./dist/images/refresh-2-512.png")
 
       /*
         If you needed to copy another file or folder
