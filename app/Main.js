@@ -73,7 +73,7 @@ function Main() {
 
             <p className="text-muted f9 m-0">
               Made by{" "}
-              <a target="_blank" href="https://github.com/Prem-Kumar-G">
+              <a target="_blank" href="https://prem-kumar-g.netlify.app/">
                 Prem G
               </a>
             </p>
