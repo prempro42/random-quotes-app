@@ -1,9 +1,5 @@
-# random-quotes-app
-Simple React App Showing Random Quotes using 3rd Party API. Designed with Bootstrap.
+# Random Quote Generator
 
-Project Link : https://random-quotes-daily.netlify.app/
+Simple React app made with Tailwind CSS & Vite
 
-
-Deployed on [Netlify.](https://www.netlify.com)
-
-
+[Install Tailwind CSS with Vite](https://tailwindcss.com/docs/guides/vite)
