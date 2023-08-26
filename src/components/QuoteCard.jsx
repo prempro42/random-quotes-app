@@ -1,7 +1,6 @@
 import React from "react";
 
 function QuoteCard({ state }) {
-  console.log("state ", state);
   return (
     <div className="card bg-white dark:bg-slate-800 rounded-lg shadow-2xl  ">
       <div className="relative block overflow-hidden p-4 sm:p-6 lg:p-8">

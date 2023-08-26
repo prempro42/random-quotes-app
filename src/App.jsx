@@ -37,7 +37,12 @@ function App() {
       axios
         .get("https://api.quotesnewtab.com/v1/quotes/random")
         .then((response) => {
-          setState({ ...response.data, isLoading: false });
+          // setState({ ...response.data, isLoading: false });
+          setState((prevState) => ({
+            ...prevState,
+            ...response.data,
+            isLoading: false,
+          }));
         })
         .catch((error) => console.log("error ", error));
     }
@@ -51,7 +56,7 @@ function App() {
   const ToggleDarkMode = () => {
     document.documentElement.classList.toggle("dark");
     const toggleDarkMode = document.documentElement.classList.contains("dark");
-    console.log(">>>>>>>>>>>", toggleDarkMode);
+
     if (toggleDarkMode) {
       setState((prevState) => ({
         ...prevState,
