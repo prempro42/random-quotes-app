@@ -1,64 +1,79 @@
-import { useEffect, useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
+import { useEffect, useRef, useState } from "react";
 import "./App.css";
-import QuoteCard from "./QuoteCard";
 import axios from "axios";
-import Loading from "./Loading";
+
+import QuoteCard from "./components/QuoteCard";
+import ToggleModeButton from "./components/ToggleModeButton";
+import RandomQuoteButton from "./components/RandomQuoteButton";
+import PoweredBy from "./components/PoweredBy";
 
 function App() {
   const [state, setState] = useState({
-    author: "",
-    quote: "",
+    author: " C.S. Lewis",
+    quote:
+      "Friendship is unnecessary, like philosophy, like art, like the universe itself… It has no survival value; rather it is one of those things which give value to survival.",
     isLoading: false,
+    initialRender: true,
+    isDarkMode: false,
   });
+
   const [refresh, setRefresh] = useState(false);
+  const animateFlag = useRef(360);
 
   useEffect(() => {
-    setState((prevState) => ({ ...prevState, isLoading: true }));
-    axios
-      .get("https://api.quotesnewtab.com/v1/quotes/random")
-      .then((response) => {
-        setState({ ...response.data, isLoading: false });
-      })
-      .catch((error) => console.log("error ", error));
+    if (state.initialRender) {
+      const toggleDarkMode =
+        document.documentElement.classList.contains("dark");
+      if (toggleDarkMode) {
+        setState((prevState) => ({
+          ...prevState,
+          initialRender: false,
+          isDarkMode: true,
+        }));
+      } else {
+        setState((prevState) => ({ ...prevState, initialRender: false }));
+      }
+    } else {
+      axios
+        .get("https://api.quotesnewtab.com/v1/quotes/random")
+        .then((response) => {
+          setState({ ...response.data, isLoading: false });
+        })
+        .catch((error) => console.log("error ", error));
+    }
   }, [refresh]);
 
-  const rotate = refresh ? "rotate(180deg)" : "rotate(-180deg)";
+  const getRandomQuote = () => {
+    setRefresh(!refresh);
+    animateFlag.current = animateFlag.current + 360;
+  };
+
+  const ToggleDarkMode = () => {
+    document.documentElement.classList.toggle("dark");
+    const toggleDarkMode = document.documentElement.classList.contains("dark");
+    console.log(">>>>>>>>>>>", toggleDarkMode);
+    if (toggleDarkMode) {
+      setState((prevState) => ({
+        ...prevState,
+        isDarkMode: true,
+      }));
+    } else {
+      setState((prevState) => ({ ...prevState, isDarkMode: false }));
+    }
+  };
 
   return (
     <div className="w-3/4 md:w-1/2 flex flex-col items-center justify-center h-screen mx-auto">
-      {/* <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div> */}
+      <ToggleModeButton ToggleDarkMode={ToggleDarkMode} state={state} />
+
       <QuoteCard state={state} />
 
-      <button
-        className="bg-gray-300 mt-4 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center"
-        onClick={() => setRefresh(!refresh)}
-      >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          strokeWidth={1.5}
-          stroke="currentColor"
-          className={`w-6 h-6`}
-          style={{ transform: rotate, transition: "all 0.4s linear" }}
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99"
-          />
-        </svg>{" "}
-        <span>&nbsp; Random Quote</span>
-      </button>
+      <RandomQuoteButton
+        getRandomQuote={getRandomQuote}
+        animateFlag={animateFlag}
+      />
+
+      <PoweredBy />
     </div>
   );
 }
