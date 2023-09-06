@@ -9,9 +9,9 @@ function ToggleModeButton({ ToggleDarkMode, state }) {
       onClick={ToggleDarkMode}
     >
       {!state.isDarkMode ? (
-        <img src={sunIcon} className="w-6 mx-auto" alt="light mode" />
-      ) : (
         <img src={moonIcon} className="w-6 mx-auto " alt="dark mode" />
+      ) : (
+        <img src={sunIcon} className="w-6 mx-auto" alt="light mode" />
       )}
     </button>
   );
