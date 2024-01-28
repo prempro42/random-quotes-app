@@ -3,7 +3,7 @@ import React from "react";
 function RandomQuoteButton({ animateFlag, getRandomQuote }) {
   return (
     <button
-      className=" bg-slate-300 mt-4 shadow-md text-gray-500 dark:bg-slate-800  dark:text-white  py-2 px-4 rounded inline-flex items-center"
+      className="bg-white mt-4 hover:shadow-xl text-gray-500 dark:bg-slate-800  dark:text-white  py-2 px-4 rounded inline-flex items-center"
       onClick={getRandomQuote}
     >
       <svg
