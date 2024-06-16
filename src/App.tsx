@@ -1,11 +1,10 @@
+import axios from "axios";
 import { useEffect, useRef, useState } from "react";
 import "./App.css";
-import axios from "axios";
-
-import QuoteCard from "./components/QuoteCard";
-import ToggleModeButton from "./components/ToggleModeButton";
-import RandomQuoteButton from "./components/RandomQuoteButton";
 import PoweredBy from "./components/PoweredBy";
+import QuoteCard from "./components/QuoteCard";
+import RandomQuoteButton from "./components/RandomQuoteButton";
+import ToggleModeButton from "./components/ToggleModeButton";
 
 function App() {
   const [state, setState] = useState({

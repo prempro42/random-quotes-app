@@ -1,6 +1,12 @@
-import React from "react";
+type RandomQuoteButtonProps = {
+  getRandomQuote: () => void;
+  animateFlag: React.MutableRefObject<number>;
+};
 
-function RandomQuoteButton({ animateFlag, getRandomQuote }) {
+const RandomQuoteButton: React.FC<RandomQuoteButtonProps> = ({
+  animateFlag,
+  getRandomQuote,
+}) => {
   return (
     <button
       className="bg-white mt-4 hover:shadow-xl text-gray-500 dark:bg-slate-800  dark:text-white  py-2 px-4 rounded inline-flex items-center"
@@ -27,6 +33,6 @@ function RandomQuoteButton({ animateFlag, getRandomQuote }) {
       <span>&nbsp; Random Quote</span>
     </button>
   );
-}
+};
 
 export default RandomQuoteButton;

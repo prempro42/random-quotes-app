@@ -1,8 +1,11 @@
-import React from "react";
-import sunIcon from "./../assets/sun.svg";
+import { AppStateType } from "../App.types";
 import moonIcon from "./../assets/moon.svg";
+import sunIcon from "./../assets/sun.svg";
 
-function ToggleModeButton({ ToggleDarkMode, state }) {
+const ToggleModeButton: React.FC<AppStateType> = ({
+  ToggleDarkMode,
+  state,
+}) => {
   return (
     <button
       className="absolute top-0 right-0 dark:bg-slate-700 bg-slate-300   text-gray-500   dark:text-white  p-4 rounded inline-flex items-center"
@@ -15,6 +18,6 @@ function ToggleModeButton({ ToggleDarkMode, state }) {
       )}
     </button>
   );
-}
+};
 
 export default ToggleModeButton;

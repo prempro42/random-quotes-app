@@ -1,8 +1,7 @@
-import React from "react";
-import reactLogo from "./../assets/react.svg";
-import viteLogo from "/vite.svg";
-import tailwindIcon from "./../assets/tailwindcss.svg";
 import newTabIcon from "./../assets/newTab.ico";
+import reactLogo from "./../assets/react.svg";
+import tailwindIcon from "./../assets/tailwindcss.svg";
+import viteLogo from "/vite.svg";
 
 function PoweredBy() {
   return (

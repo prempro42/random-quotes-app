@@ -1,6 +1,6 @@
-import React from "react";
+import { AppStateType } from "../App.types";
 
-function QuoteCard({ state }) {
+const QuoteCard: React.FC<AppStateType> = ({ state }) => {
   return (
     <div className="card bg-white dark:bg-slate-800 rounded-lg shadow-2xl  ">
       <div className="relative block overflow-hidden p-4 sm:p-6 lg:p-8">
@@ -22,6 +22,6 @@ function QuoteCard({ state }) {
       </div>
     </div>
   );
-}
+};
 
 export default QuoteCard;
